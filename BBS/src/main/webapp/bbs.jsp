@@ -14,7 +14,7 @@
 <meta name = "viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href ="css/bootstrap.css">
  
-<title>JSP 웹사이트 게시판</title>
+<title>JSP 웹사이트</title>
 <style type="text/css">
  a, a:hover{
  	color: #000000;
