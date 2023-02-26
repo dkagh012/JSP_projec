@@ -1,3 +1,4 @@
+<!--header  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
@@ -18,13 +19,13 @@
     <header>
       <div class="headerArea container">
         <div class="logo">
-          <a href="">
+          <a href="main.jsp">
             <img src="images/logo.png" alt="">
           </a>
         </div>
         <ul class="headerList">
-          <li><a>HOME</a></li>
-          <li><a>NEWS</a></li>
+          <li><a href="main.jsp">HOME</a></li>
+          <li><a href="bbs.jsp">NEWS</a></li>
           <li><a>COMMUNITY</a></li>
           <li><a>ART</a></li>
           <li><a>CONTACT US</a></li>
