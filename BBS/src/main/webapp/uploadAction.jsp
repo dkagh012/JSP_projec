@@ -7,10 +7,10 @@
 	pageEncoding="UTF-8"%>
 
 
-	
-	
-	
-	
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,17 +21,20 @@
 </head>
 <body>
 	<%
-	String directory = application.getRealPath("bbsUpload");
-	int maxSize = 1024 * 1024 * 100 ; 
+	String directory = "C:\\Users\\광태예슬\\git\\JSP_projec\\BBS\\src\\main\\webapp\\bbsUpload";
+	/* 	String directory = application.getRealPath("/bbsUpload"); */
+	int maxSize = 1024 * 1024 * 100;
 	String encoding = "UTF-8";
-	
-	MultipartRequest multipartRequest
-	=new MultipartRequest(request, directory, maxSize , encoding , new DefaultFileRenamePolicy());
-	
-	String fileName = multipartRequest.getOriginalFileName("file");
-	String fileRealName = multipartRequest.getOriginalFileName("file");
-	
-	new FileDAO().upload(fileName,fileRealName);
+
+	MultipartRequest multipartRequest = new MultipartRequest(request, directory, maxSize, encoding,
+			new DefaultFileRenamePolicy());
+
+	out.write("저장되는 경로(실제 서버) : " + directory + "<br>");
+
+	String fileName = multipartRequest.getOriginalFileName("uploadfiles");
+	String fileRealName = multipartRequest.getOriginalFileName("uploadfiles");
+
+	new FileDAO().upload(fileName, fileRealName);
 	out.write("파일명:" + fileName + "<br>");
 	out.write("실제파일명:" + fileRealName + "<br>");
 	%>
