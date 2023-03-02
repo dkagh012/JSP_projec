@@ -34,7 +34,7 @@
 		 	pageNumber = Integer.parseInt(request.getParameter("pageNumber"));	
 	%>
 										<%@include file ="header.jsp" %>
-	<div class"container">
+	<div class="container">
 	 <div class="row">
 	 	<table class="table table-striped" style="text-align: center; border: 1px solid #dddd">
 	 		<thead>

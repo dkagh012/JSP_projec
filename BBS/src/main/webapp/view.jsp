@@ -4,7 +4,13 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="bbs.BbsDAO" %>
 <%@ page import="bbs.Bbs" %>
-
+<%@ page import="file.FileDAO" %>
+<%@ page import="file.FileDTO" %>
+<%@ page import="java.io.File"%>
+<%@ page import="file.FileDAO"%>
+<%@ page import="java.util.Enumeration"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +43,26 @@
 
 
 	%>
+		    <%
+        String directory = "C:\\Users\\광태예슬\\git\\JSP_projec\\BBS\\src\\main\\webapp\\bbsUpload";
+        int maxSize = 1024 * 1024 * 100;
+        String encoding = "UTF-8";
+
+        MultipartRequest multipartRequest = new MultipartRequest(request, directory, maxSize, encoding,
+            new DefaultFileRenamePolicy());
+
+        Enumeration fileNames = multipartRequest.getFileNames();
+        while (fileNames.hasMoreElements()) {
+            out.write("저장되는 경로(실제 서버) : " + directory + "<br>");
+
+            String parameter = (String) fileNames.nextElement();
+            String fileName = multipartRequest.getOriginalFileName(parameter);
+            String fileRealName = multipartRequest.getFilesystemName(parameter);
+
+            new FileDAO().upload(fileName, fileRealName);
+        }
+    %>
+		
 								<%@include file ="header.jsp" %>
 	<div class="container">
 	 <div class="row"> 
@@ -47,10 +73,7 @@
  
 	 			</tr>
 	 		</thead>
-	 			<tbody>	
- 	 			
-	 				 
-	 		
+	 			<tbody>			
 	 				 	<tr>
 	 		
 	 					<td>글 제목</td>
@@ -69,6 +92,7 @@
 	 				
 	 					<td> 내용 </td>
 	 					<td colspan="2" style="height:200px; text-align: left;" ><%=bbs.getBbsContent().replaceAll(" ","&nbsp;").replaceAll("<","&lt").replaceAll(">","&gt").replaceAll("\n","<br>" ) %></td>
+	  					<img src=<%= FileDAO.getFileRealName() %>>
 	  				</tr>
 	  				
 	  				 
